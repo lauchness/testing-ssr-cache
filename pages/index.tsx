@@ -71,7 +71,11 @@ const Home: NextPage<
 
 export default Home;
 
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+export async function getServerSideProps({ res }: GetServerSidePropsContext) {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=10, stale-while-revalidate=59"
+  );
   const tweetURL =
     "https://twitter.com/marbiano3/status/1518959655497650176?ref_src=twsrc%5Etfw";
   const twitter = {
